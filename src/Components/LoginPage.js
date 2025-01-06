@@ -21,6 +21,14 @@ const Login = () => {
       return (
             <div className="container mt-5 card w-50" >
                   <h2 className="card-header mt-3 mb-5">Login</h2>
+                  <div>
+
+                  <img
+                        src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                        alt="profile-img"
+                        className="profile-img-card mt-5 mb-5 rounded-circle img-fluid w-25 "
+                  />
+                  </div>
                   <form onSubmit={handleSubmit}>
                         <div className="mb-3 row">
                               <label htmlFor="username" className="col-sm-3 col-form-label">Username</label>

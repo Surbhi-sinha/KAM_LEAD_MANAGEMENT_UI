@@ -10,6 +10,8 @@ import Dashboard from './Components/Dashboard';
 import AddLeads from './Components/AddLeads';
 import LoginPage from './Components/LoginPage';
 import SignupPage from './Components/SignupPage';
+import Home from './Components/Home';
+import AllLeads from './Components/AllLeads';
 
 import './App.css';
 
@@ -26,12 +28,12 @@ class App extends Component {
             <BrowserRouter basename=''>
                 
               <Routes>
-                <Route path="/" element={<Dashboard />}></Route>
+                <Route path="/" element={<Home />}></Route>
                 <Route path="/dashboard" element={<Dashboard />}></Route>
                 <Route path="/addLeads" element={<AddLeads />}></Route>
                 <Route path="/login" element={<LoginPage />}></Route>
                 <Route path="/signup" element={<SignupPage />}></Route>
-           
+                <Route path='/allLeads' element={<AllLeads/>}></Route>
 
               </Routes>
             </BrowserRouter>

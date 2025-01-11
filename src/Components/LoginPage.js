@@ -1,7 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from 'axios';
+import NavigationBar from "./Navbar";
 import { isEmail } from "validator"
 const Login = () => {
+      const navigate = useNavigate();
       const [formData, setFormData] = useState({
             username: "",
             password: "",
@@ -12,13 +15,25 @@ const Login = () => {
             setFormData({ ...formData, [name]: value });
       };
 
-      const handleSubmit = (e) => {
+      const handleSubmit = async (e) => {
             e.preventDefault();
             console.log("Login Data:", formData);
             // Add logic to handle Login with backend
+            try{
+                  const response = await axios.post("http://localhost:5000/api/auth/signin" , formData);
+                  console.log(response.data);
+                  localStorage.setItem('user' , JSON.stringify({username : response.data.username}))
+                  navigate("/");
+            }catch(err){
+                  console.log(err);
+                  alert("Error Logging in : ", err);
+            }
       };
 
       return (
+            <div>
+                  <NavigationBar/>
+           
             <div className="container mt-5 card w-50" >
                   <h2 className="card-header mt-3 mb-5">Login</h2>
                   <div>
@@ -65,6 +80,7 @@ const Login = () => {
                         </div>
                   </form>
 
+            </div>
             </div>
       );
 };

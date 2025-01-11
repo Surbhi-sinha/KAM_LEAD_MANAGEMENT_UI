@@ -1,43 +1,69 @@
-import React, { Component } from 'react';
+import React, { Component, useState } from 'react';
 import NavigationBar from './Navbar';
+import { useNavigate } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 
-class Dashboard extends Component {
-      render() {
-            // <Navbar/>
-            //       <div>
-            //       <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            //             <div class="container-fluid">
-            //                   <a class="navbar-brand" href="#">Navbar w/ text</a>
-            //                   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            //                         <span class="navbar-toggler-icon"></span>
-            //                   </button>
-            //                   <div class="collapse navbar-collapse" id="navbarText">
-            //                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            //                               <li class="nav-item">
-            //                                     <a class="nav-link active" aria-current="page" href="#">Home</a>
-            //                               </li>
-            //                               <li class="nav-item">
-            //                                     <a class="nav-link" href="#">Features</a>
-            //                               </li>
-            //                               <li class="nav-item">
-            //                                     <a class="nav-link" href="#">Pricing</a>
-            //                               </li>
-            //                         </ul>
-            //                         <span class="navbar-text">
-            //                               Navbar text with an inline element
-            //                         </span>
-            //                   </div>
-            //             </div>
-            //       </nav>
-            // </div>
-            return (
-                  <div>
-                        <NavigationBar/>
-                        <h1>Hello!</h1>
-                  </div>
-            )
+
+function Dashboard() {
+
+      const navigate = useNavigate();
+
+      const handleAddLeads = ()=>{
+            navigate('/addLeads');
       }
+
+      const handleGetAllLeads = () =>{
+            navigate('/allLeads');
+      }
+      const [todos, setTodos] = useState([]);
+      const [newTodo, setNewTodo] = useState('');
+
+      const addTodo = () => {
+            if (newTodo.trim()) {
+                  setTodos([...todos, newTodo]);
+                  setNewTodo('');
+            }
+      };
+
+      const deleteTodo = (index) => {
+            const updatedTodos = todos.filter((todo, i) => i !== index);
+            setTodos(updatedTodos);
+      };
+
+      return (
+
+            <div>
+                  <NavigationBar />
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <div style={{ width: '50%', backgroundColor: "whitesmoke" }}>
+
+                              <div className="d-grid gap-2 col-6 mx-auto mt-3 mb-3">
+                                    <button className="btn btn-primary btn-lg" type="button" onClick={handleAddLeads} >Add New Lead </button>
+                                    <button className="btn btn-primary btn-lg" type="button" onClick={handleGetAllLeads}>Track All Leads</button>
+                              </div>
+                              {/* <button onClick={addTodo}>Add Todo</button>
+                              <button onClick={() => setTodos([])}>Clear All</button> */}
+                        </div>
+                        <div style={{ width: '50%', backgroundColor: "blue" }}>
+                              <h3>To-Do List</h3>
+                              <input
+                                    type="text"
+                                    value={newTodo}
+                                    onChange={(e) => setNewTodo(e.target.value)}
+                                    placeholder="Add a new todo"
+                              />
+                              <ul>
+                                    {todos.map((todo, index) => (
+                                          <li key={index}>
+                                                {todo} <button onClick={() => deleteTodo(index)}>Delete</button>
+                                          </li>
+                                    ))}
+                              </ul>
+                        </div>
+                  </div>
+            </div>
+      );
 }
 
 export default Dashboard;

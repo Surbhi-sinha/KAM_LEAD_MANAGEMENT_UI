@@ -30,6 +30,7 @@ const RegisterLeadForm = () => {
         "http://localhost:5000/api/leads",
         formData
       );
+      console.log(response.data)
       alert(response.data.message);
     } catch (error) {
       console.log(error);

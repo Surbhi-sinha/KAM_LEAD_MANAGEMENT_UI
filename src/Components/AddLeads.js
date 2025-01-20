@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import NavigationBar from "./Navbar";
+import "../styles/AddLeads.css"
 
-const RegisterLeadForm = () => {
+const RegisterLeadForm = ({ lead, isUpdateMode, onClose, onSubmit }) => {
   const [formData, setFormData] = useState({
     restraunt_name: "",
     restraunt_address: "",
@@ -18,6 +19,14 @@ const RegisterLeadForm = () => {
     status: "new",
   });
 
+
+  // Pre fill the form if is in update Mode
+  useEffect(() => {
+    if (isUpdateMode && lead) {
+      setFormData({ ...lead });
+    }
+  }, [isUpdateMode, lead]);
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
@@ -25,24 +34,39 @@ const RegisterLeadForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/leads",
-        formData
-      );
-      console.log(response.data)
-      alert(response.data.message);
-    } catch (error) {
-      console.log(error);
-      alert("Error registering lead :", error);
+
+    if (isUpdateMode) {
+      try {
+        const response = await axios.put(`http://localhost:5000/api/leads/${lead.id}`, formData);
+        alert('Lead updated Successfully!');
+        onSubmit(); //notify the parent(card List) to refresh data
+
+      } catch (err) {
+        console.log('error updating lead : ', err);
+        alert('Failed to update the lead.');
+      }
+      onClose();
+    } else {
+      try {
+        const response = await axios.post(
+          "http://localhost:5000/api/leads",
+          formData
+        );
+        console.log(response.data)
+        alert(response.data.message);
+      } catch (error) {
+        console.log(error);
+        alert("Error registering lead :", error);
+      }
+
     }
   };
 
   return (
     <div>
       <NavigationBar />
-      <h2>Register New Lead</h2>
-      <div className="container mt-5 card w-90">
+      <h2 className="Header_Color">{isUpdateMode ? 'Update Lead' : 'Register New Lead'}</h2>
+      <div className="container mt-5 mb-5 card w-90">
         <form onSubmit={handleSubmit}>
           <div className="mt-3 row align-items-start">
             <label>
@@ -58,20 +82,18 @@ const RegisterLeadForm = () => {
               />
             </label>
 
-            {/* <div className="mt-3"> */}
-              <label className="form-label mt-3">
-                Restaurant Address:
-                <input
-                  type="text"
-                  placeholder="K-110, Basement, Hauz Khas Enclave, New Delhi, Delhi 110016, India"
-                  className="form-control"
-                  name="restraunt_address"
-                  value={formData.restraunt_address}
-                  onChange={handleChange}
-                  required
-                />
-              </label>
-            {/* </div> */}
+            <label className="form-label mt-3">
+              Restaurant Address:
+              <input
+                type="text"
+                placeholder="K-110, Basement, Hauz Khas Enclave, New Delhi, Delhi 110016, India"
+                className="form-control"
+                name="restraunt_address"
+                value={formData.restraunt_address}
+                onChange={handleChange}
+                required
+              />
+            </label>
 
             <div className="col row card mt-3 m-3">
               <h3>Point of Contact 1</h3>
@@ -193,7 +215,7 @@ const RegisterLeadForm = () => {
               <label>
                 Status:
                 <select
-                className="form-control"
+                  className="form-control"
                   name="status"
                   value={formData.status}
                   onChange={handleChange}
@@ -206,7 +228,10 @@ const RegisterLeadForm = () => {
               </label>
             </div>
           </div>
-          <button className="btn btn-primary mb-3" type="submit">Register Lead</button>
+          <button className="btn btn-primary mb-3" type="submit">{isUpdateMode ? 'Update Lead' : 'Register Lead'}</button>
+
+          {/* {isUpdateMode? ():()} */}
+          {/* <button className="btn btn-danger mb-3" type="button" onClick={onClose}>Cancel</button> */}
         </form>
       </div>
     </div>

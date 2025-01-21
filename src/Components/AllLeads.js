@@ -4,14 +4,16 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import RegisterLeadForm from './AddLeads';
+import { useNavigate } from 'react-router-dom';
 
 function AllLeads() {
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLead, setSelectedLead] = useState(null);
   const [isUpdateMode, setIsUpdateMode] = useState(false);
+  const [leadInteractions , setLeadInteractions] = useState(null);
 
-
+  const navigate = useNavigate();
   const fetchData = async () => {
     try {
       const response = await axios.get('http://localhost:5000/api/leads');
@@ -44,6 +46,21 @@ function AllLeads() {
     setIsUpdateMode(true);
   }
 
+  // const fetchLeadInteraction = async(leadId)=>{
+  //   navigate('/interactions')
+  //   try{
+  //     const response = await axios.get(`http://localhost:5000/api/lead/${leadId}`);
+  //     const data = response.data;
+  //     console.log(data)
+  //     setLeadInteractions(data);
+  //   }catch(err){
+  //     console.log(" error getting leads interaction : ",err);
+  //   }
+  // }
+  const handleInteractionClick = (leadId)=>{
+    // fetchLeadInteraction(leadId);
+    navigate(`/interactions/${leadId}`)
+  }
   const handleDeleteClick = async (leadId) => {
     if (window.confirm("Are you sure! you want to delete this lead?")) {
       try {
@@ -129,7 +146,7 @@ function AllLeads() {
                       handleDeleteClick(restaurant.id)
                     }}>Delete</button>
                     <button type="button" className="btn btn-warning m-1" onClick={() => handleUpdateClick(restaurant)}>Update</button>
-                    <button type="button" className="btn btn-info m-1">Interactions</button>
+                    <button type="button" className="btn btn-info m-1" onClick={()=>{handleInteractionClick(restaurant.id)}}>Interactions</button>
                   </div>
                 </div>
               </div>

@@ -12,6 +12,7 @@ import LoginPage from './Components/LoginPage';
 import SignupPage from './Components/SignupPage';
 import Home from './Components/Home';
 import AllLeads from './Components/AllLeads';
+import Interactions from './Components/Interactions';
 
 import './App.css';
 
@@ -34,7 +35,7 @@ class App extends Component {
                 <Route path="/login" element={<LoginPage />}></Route>
                 <Route path="/signup" element={<SignupPage />}></Route>
                 <Route path='/allLeads' element={<AllLeads/>}></Route>
-
+                <Route path='/interactions/:leadId' element={<Interactions/>}></Route>
               </Routes>
             </BrowserRouter>
 

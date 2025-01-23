@@ -1,0 +1,47 @@
+/* Custom CSS for positioning */
+.alert {
+   position: fixed;
+   top: 20px;
+   right: 20px;
+   z-index: 1000;
+ }
+
+ /* Custom CSS for success modal */
+.success-modal {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   z-index: 1000; /* Ensure it's on top of other elements */
+   animation: fadeIn 0.5s ease-out;
+ }
+ 
+ .success-gif {
+   max-width: 100%;
+   max-height: 100%;
+   border-radius: 10px; /* Optional: Add rounded corners */
+   animation: zoomIn 0.5s ease-out;
+ }
+ 
+ @keyframes fadeIn {
+   from {
+     opacity: 0;
+   }
+   to {
+     opacity: 1;
+   }
+ }
+ 
+ @keyframes zoomIn {
+   from {
+     transform: scale(0.5);
+   }
+   to {
+     transform: scale(1);
+   }
+ }

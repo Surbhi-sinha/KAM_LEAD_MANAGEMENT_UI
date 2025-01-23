@@ -95,6 +95,15 @@ body {
   );
   
 }
+.bkg-transparent-dark{
+  /* background-color: rgba(21, 21, 21, 0.4);  */
+  background: linear-gradient(
+    to right,
+    rgba(34, 33, 33, 0.6), /* White with 80% opacity */
+    rgba(205, 172, 172, 0.2)  /* White with 20% opacity */
+  );
+  
+}
 .bkg-transparent-light{
   /* background-color: rgba(21, 21, 21, 0.4);  */
   background: linear-gradient(
@@ -105,6 +114,45 @@ body {
   
 }
 
+.button-light{
+  background-color: #d1e6ee;
+}
+
+.hover-effect:hover {
+  background-color: #0654a7; /* Darker shade of primary color */
+}
+
+.primary-text{
+  color: #27a3d4;
+}
+
+/* Custom CSS for success message animation */
+.success-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  animation: slideIn 0.5s ease-out, fadeOut 0.5s ease-out 2.5s;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 .Welcome_below_text {
   color: whitesmoke;
   font-family: Verdana, Geneva, Tahoma, sans-serif;

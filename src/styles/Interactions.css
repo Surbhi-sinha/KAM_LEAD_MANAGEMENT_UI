@@ -1,44 +1,54 @@
 /* Timeline Container */
 .timeline {
-      position: relative;
-    }
-    
-    /* Timeline Item */
-    .timeline-item {
-      margin-bottom: 20px;
-    }
-    
-    /* Timeline Icon (Dot and Line) */
-    .timeline-icon {
-      position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-    }
-    
-    /* Timeline Dot */
-    .timeline-dot {
-      width: 16px;
-      height: 16px;
-      background-color: #007bff; /* Blue dot */
-      border-radius: 50%;
-      z-index: 1;
-    }
-    
-    /* Timeline Line */
-    .timeline-line {
-      position: absolute;
-      top: 16px; /* Start below the dot */
-      left: 50%;
-      transform: translateX(-50%);
-      width: 2px;
-      height: calc(100% - 16px); /* Adjust height to connect to the next dot */
-      background-color: #007bff; /* Blue line */
-    }
-    
-    /* Card Styling */
-    .card {
-      border: 1px solid #dee2e6;
-      border-radius: 5px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
+  position: relative;
+}
+
+/* Timeline Item */
+.timeline-item {
+  margin-bottom: 20px;
+}
+
+/* Timeline Icon (Dot and Line) */
+.timeline-icon {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* Timeline Dot */
+.timeline-dot {
+  width: 20px;
+  height: 20px;
+  background-color: #eff3f6; /* Blue dot */
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Timeline Line */
+.timeline-line {
+  position: absolute;
+  top: 16px; /* Start below the dot */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: calc(100%); /* Adjust height to connect to the next dot */
+  background-color: #959aa0; /* Blue line */
+}
+
+/* Card Styling */
+.card {
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.bkg-tranparent-darker{
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.custom-textarea {
+  height: 200px; /* Set height in px */
+}

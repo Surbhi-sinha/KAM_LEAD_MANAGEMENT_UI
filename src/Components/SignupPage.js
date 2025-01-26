@@ -60,6 +60,7 @@ const Signup = () => {
                                                                         name="username"
                                                                         value={formData.username}
                                                                         onChange={handleInputChange}
+                                                                        placeholder="John Doe"
                                                                         required
                                                                   />
                                                             </div>
@@ -74,6 +75,7 @@ const Signup = () => {
                                                                         name="email"
                                                                         value={formData.email}
                                                                         onChange={handleInputChange}
+                                                                        placeholder="Johndoe@gmail.com"
                                                                         required
                                                                   />
                                                             </div>
@@ -88,6 +90,7 @@ const Signup = () => {
                                                                         name="password"
                                                                         value={formData.password}
                                                                         onChange={handleInputChange}
+                                                                        placeholder="******"
                                                                         required
                                                                   />
                                                             </div>

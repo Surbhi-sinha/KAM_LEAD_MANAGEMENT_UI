@@ -5,6 +5,7 @@ import NavigationBar from "./Navbar";
 import loginimage from '../Images/loginimage.png';
 import success from '../Images/suceess.gif';
 import '../styles/Auth.css'
+import { Link} from "react-router-dom";
 
 const Login = () => {
 
@@ -33,7 +34,7 @@ const Login = () => {
                   setShowSuccess(true);
                   setTimeout(() => {
                         setShowSuccess(false)
-                        navigate("/");
+                        navigate("/dashboard");
                   }, 3000);
             } catch (err) {
                   console.log(err);
@@ -67,6 +68,7 @@ const Login = () => {
                                                                   name="username"
                                                                   value={formData.username}
                                                                   onChange={handleInputChange}
+                                                                  placeholder="John Doe"
                                                                   required
                                                             />
                                                       </div>
@@ -81,6 +83,7 @@ const Login = () => {
                                                                   name="password"
                                                                   value={formData.password}
                                                                   onChange={handleInputChange}
+                                                                  placeholder="******"
                                                                   required
                                                             />
                                                       </div>
@@ -91,6 +94,10 @@ const Login = () => {
                                                       </div>
                                                 </div>
                                           </form>
+
+                                          <p className="mt-3">
+                                                Don't have an account? <Link to="/signup"><span className="light-text">Sign up</span></Link>
+                                          </p>
 
                                           {/* Success GIF Modal */}
                                           {showSuccess && (

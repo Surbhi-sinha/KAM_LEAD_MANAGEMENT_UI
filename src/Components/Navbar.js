@@ -2,9 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { Nav, Navbar } from 'react-bootstrap';
-import LoginPage from './LoginPage';
-import SignupPage from './SignupPage';
-
 
 const NavigationBar = () => {
 

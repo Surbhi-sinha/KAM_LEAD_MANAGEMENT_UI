@@ -1,17 +1,19 @@
 import NavigationBar from './Navbar';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import RegisterLeadForm from './AddLeads';
 import { useNavigate } from 'react-router-dom';
 
+import { TaskContext } from '../Context/TaskProvider';
 function AllLeads() {
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedLead, setSelectedLead] = useState(null);
   const [isUpdateMode, setIsUpdateMode] = useState(false);
-  const [leadInteractions , setLeadInteractions] = useState(null);
+
+  const  { addTask} = useContext(TaskContext);
 
   const navigate = useNavigate();
   const fetchData = async () => {
@@ -46,19 +48,8 @@ function AllLeads() {
     setIsUpdateMode(true);
   }
 
-  // const fetchLeadInteraction = async(leadId)=>{
-  //   navigate('/interactions')
-  //   try{
-  //     const response = await axios.get(`http://localhost:5000/api/lead/${leadId}`);
-  //     const data = response.data;
-  //     console.log(data)
-  //     setLeadInteractions(data);
-  //   }catch(err){
-  //     console.log(" error getting leads interaction : ",err);
-  //   }
-  // }
+ 
   const handleInteractionClick = (leadId)=>{
-    // fetchLeadInteraction(leadId);
     navigate(`/interactions/${leadId}`)
   }
   const handleDeleteClick = async (leadId) => {
@@ -73,6 +64,17 @@ function AllLeads() {
       }
     }
   }
+
+  const handleAddTaskClick = (restaurant) => {
+    const newTask = {
+      id: Date.now(), // Unique ID for the task
+      title: `Call ${restaurant.restraunt_name}`, // Task title
+      restaurant: restaurant, // Associated restaurant data
+      completed: false, // Task is initially not completed
+    };
+    addTask(newTask); // Add the new task to the context
+    alert('New Task Added');
+  };
 
   if (loading) {
     return <div className="container mt-4">Loading...</div>;
@@ -141,10 +143,8 @@ function AllLeads() {
                     </p>
 
                     <hr />
-                    <button type="button" className="btn btn-success m-1">Add Task</button>
-                    <button type="button" className="btn btn-danger m-1" onClick={() => {
-                      handleDeleteClick(restaurant.id)
-                    }}>Delete</button>
+                    <button type="button" className="btn btn-success m-1" onClick={()=>{handleAddTaskClick(restaurant)}}>Add Task</button>
+                    <button type="button" className="btn btn-danger m-1" onClick={() => {handleDeleteClick(restaurant.id)}}>Delete</button>
                     <button type="button" className="btn btn-warning m-1" onClick={() => handleUpdateClick(restaurant)}>Update</button>
                     <button type="button" className="btn btn-info m-1" onClick={()=>{handleInteractionClick(restaurant.id)}}>Interactions</button>
                   </div>

@@ -58,7 +58,6 @@ const Interactions = () => {
                         LeadId: leadId,
                   });
 
-                  console.log('Interaction created:', response.data); // Log the response
                   alert('Interaction created successfully!'); // Notify the user
                   setComment(''); // Clear the text box
             } catch (err) {

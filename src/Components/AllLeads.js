@@ -31,7 +31,7 @@ function AllLeads() {
     const fetchData = async () => {
       try {
         const response = await axios.get('http://localhost:5000/api/leads');
-        console.log(response.data)
+        
         setRestaurants(response.data);
         setLoading(false);
       } catch (error) {
@@ -112,9 +112,9 @@ function AllLeads() {
           <div className="row">
             {restaurants.map((restaurant) => (
               <div className="col-md-6 mb-4" key={restaurant.id}>
-                <div className="card">
+                <div className="card lexend-Font text-start bkg-tranparent-darker light-text">
                   <div className="card-body">
-                    <h5 className="card-title">{restaurant.restraunt_name}</h5>
+                    <h2 className="card-title">Lead: {restaurant.restraunt_name}</h2>
                     <hr />
                     <p className="card-text">
                       <strong>Address:</strong> {restaurant.restraunt_address}
@@ -126,7 +126,7 @@ function AllLeads() {
                       <strong>Call Frequency:</strong> {restaurant.call_frequency}
                     </p>
                     <hr />
-                    <h6>Point of Contact 1</h6>
+                    <h4>Point of Contact 1</h4>
                     <p className="card-text">
                       <strong>Name:</strong> {restaurant.POC1_name} <br />
                       <strong>Phone:</strong> {restaurant.POC1_phone_number} <br />
@@ -134,7 +134,7 @@ function AllLeads() {
                       <strong>Role:</strong> {restaurant.POC1_role}
                     </p>
                     <hr />
-                    <h6>Point of Contact 2</h6>
+                    <h4>Point of Contact 2</h4>
                     <p className="card-text">
                       <strong>Name:</strong> {restaurant.POC2_name} <br />
                       <strong>Phone:</strong> {restaurant.POC2_phone_number} <br />

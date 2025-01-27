@@ -3,7 +3,7 @@ import NavigationBar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.min.css";
 import TaskList from './TaskList';
-
+import todoimage from '../Images/todoimage.svg'
 function Dashboard() {
       const navigate = useNavigate();
      
@@ -15,24 +15,19 @@ function Dashboard() {
       const handleGetAllLeads = () => {
             navigate('/allLeads');
       }
-      const handleAddTaskClick=()=>{
-            navigate('/allTasks');
-      }
 
       return (
 
             <div>
                   <NavigationBar />
-                  <div className='row'>
-                        <div className='col-4'>
-
-                              <div className="d-grid gap-2 col-6 mx-auto mt-3 mb-3">
-                                    <button className="btn btn-primary btn-lg" type="button" onClick={handleAddLeads} >Add New Lead </button>
-                                    <button className="btn btn-primary btn-lg" type="button" onClick={handleGetAllLeads}>Track All Leads</button>
-                              </div>
+                  <div className='row p-5 m-2'>
+                        <div className='col-4 bkg-transparent-darker p-2 m-3'>
+                              <img src={todoimage} className='img-fluid' />
+                              <button className="btn button-light btn-lg m-2" type="button" onClick={handleAddLeads} >Add New Lead </button>
+                              <button className="btn button-light btn-lg" type="button" onClick={handleGetAllLeads}>Track All Leads</button>
                         </div>
-                        <div className='col-6'>
-                              <TaskList/>
+                        <div className='col-7'>
+                              <TaskList />
                         </div>
                   </div>
             </div>

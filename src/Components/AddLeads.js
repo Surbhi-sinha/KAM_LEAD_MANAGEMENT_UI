@@ -52,10 +52,10 @@ const RegisterLeadForm = ({ lead, isUpdateMode, onClose, onSubmit }) => {
           "http://localhost:5000/api/leads",
           formData
         );
-        console.log(response.data)
+        
         alert(response.data.message);
       } catch (error) {
-        console.log(error);
+        
         alert("Error registering lead :", error);
       }
 
@@ -65,8 +65,8 @@ const RegisterLeadForm = ({ lead, isUpdateMode, onClose, onSubmit }) => {
   return (
     <div>
       <NavigationBar />
-      <h2 className="Header_Color">{isUpdateMode ? 'Update Lead' : 'Register New Lead'}</h2>
-      <div className="container mt-5 mb-5 card w-90">
+      <h2 className="light-text lexend-Font mt-3">{isUpdateMode ? 'Update Lead' : 'Register New Lead'}</h2>
+      <div className="container mt-5 mb-5 card w-90 bkg-tranparent-darker light-text lexend-Font text-start">
         <form onSubmit={handleSubmit}>
           <div className="mt-3 row align-items-start">
             <label>
@@ -197,35 +197,38 @@ const RegisterLeadForm = ({ lead, isUpdateMode, onClose, onSubmit }) => {
               </label>
             </div>
 
-            <div className="mt-3">
-              <label>
-                Call Frequency (per week):
-                <input
-                  type="number"
-                  className="form-control"
-                  name="call_frequency"
-                  value={formData.call_frequency}
-                  onChange={handleChange}
-                  min="1"
-                />
-              </label>
-            </div>
+            <div className="row">
 
-            <div className="mt-3 mb-3">
-              <label>
-                Status:
-                <select
-                  className="form-control"
-                  name="status"
-                  value={formData.status}
-                  onChange={handleChange}
-                >
-                  <option value="new">New</option>
-                  <option value="contacted">Contacted</option>
-                  <option value="discussion">Discussion</option>
-                  <option value="closed">Closed</option>
-                </select>
-              </label>
+              <div className="mt-3 col-4">
+                <label>
+                  Call Frequency (per week):
+                  <input
+                    type="number"
+                    className="form-control"
+                    name="call_frequency"
+                    value={formData.call_frequency}
+                    onChange={handleChange}
+                    min="1"
+                  />
+                </label>
+              </div>
+
+              <div className="mt-3 mb-3 col-4">
+                <label>
+                  Status:
+                  <select
+                    className="form-control"
+                    name="status"
+                    value={formData.status}
+                    onChange={handleChange}
+                  >
+                    <option value="new">New</option>
+                    <option value="contacted">Contacted</option>
+                    <option value="discussion">Discussion</option>
+                    <option value="closed">Closed</option>
+                  </select>
+                </label>
+              </div>
             </div>
           </div>
           <button className="btn btn-primary mb-3" type="submit">{isUpdateMode ? 'Update Lead' : 'Register Lead'}</button>

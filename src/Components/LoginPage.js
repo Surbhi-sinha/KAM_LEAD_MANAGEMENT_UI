@@ -23,11 +23,10 @@ const Login = () => {
 
       const handleSubmit = async (e) => {
             e.preventDefault();
-            console.log("Login Data:", formData);
 
             try {
                   const response = await axios.post("http://localhost:5000/api/auth/signin", formData);
-                  console.log(response.data);
+                  
                   // alert(response.data.message);
                   localStorage.setItem('user', JSON.stringify({ username: response.data.username }))
 

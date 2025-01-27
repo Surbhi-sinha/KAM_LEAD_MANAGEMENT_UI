@@ -4,11 +4,12 @@ body {
   overflow: auto;
   background: linear-gradient(
     315deg,
-    #283048 3%,
-    #859398 38%,
-    #ff0054 68%,
-    #ffbd00 98%
+    #1a233d 3%,
+    #163946 38%,
+    #36225b 68%,
+    #3b3523 98%
   );
+  /* background-color: #101e2a; */
   animation: gradient 15s ease infinite;
   background-size: 400% 400%;
   background-attachment: fixed;
@@ -108,16 +109,33 @@ body {
   /* background-color: rgba(21, 21, 21, 0.4);  */
   background: linear-gradient(
     to right,
-    rgba(245, 234, 234, 0.6), /* White with 80% opacity */
+    rgba(125, 93, 93, 0.6), /* White with 80% opacity */
     rgba(246, 243, 243, 0.2)  /* White with 20% opacity */
   );
   
 }
 
+.bkg-tranparent-darker{
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 10px;
+}
+.bkg-tranparent-darker-x{
+  background-color: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+}
+
+
+
 .button-light{
   background-color: #d1e6ee;
 }
 
+.button-light:hover{
+  background-color: #859398;
+  color: aliceblue;
+}
 .hover-effect:hover {
   background-color: #0654a7; /* Darker shade of primary color */
 }

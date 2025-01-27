@@ -23,7 +23,6 @@ const Signup = () => {
 
       const handleSubmit = async (e) => {
             e.preventDefault();
-            console.log("Signup Data:", formData);
             // Add logic to handle signup with backend
             try {
                   const response = await axios.post("http://localhost:5000/api/auth/signup", formData);

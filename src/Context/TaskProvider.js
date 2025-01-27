@@ -21,14 +21,6 @@ export const TaskProvider = ({children}) =>{
       setTask((prevTasks)=>[...prevTasks, task]);
    };
 
-   // mark a task as completed
-   const toggleTaskCompletion = (taskId) =>{
-      setTask((prevTasks) =>
-         prevTasks.map((task)=>
-            task.id === taskId ? {...task , completed : !task.completed} : task
-         )
-      );
-   }
 
    //delete the task
    const deleteTask = (taskId)=>{
@@ -36,10 +28,9 @@ export const TaskProvider = ({children}) =>{
    };
 
 
-   console.log("task in the taskprovider : ",tasks)
 
    return (
-      <TaskContext.Provider value={{tasks , addTask ,toggleTaskCompletion, deleteTask}}>
+      <TaskContext.Provider value={{tasks , addTask , deleteTask}}>
          {children}
       </TaskContext.Provider>
    );

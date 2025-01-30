@@ -151,5 +151,12 @@ The **Task Management** feature enables users to **getupdate , add task and Dele
 
 ---
 
-### **Conclusion**
-This system offers a **comprehensive solution** for managing leads, tracking interactions, and efficiently handling tasks related to key accounts. With features like user authentication, lead management, and task tracking, it aims to enhance **productivity, collaboration**, and **efficiency** within the team.
+### **Tech Used**
+- React.JS
+- Node.JS
+- Javascript
+- mySQL
+- RestAPI
+- BootStrap
+- Express.JS
+- Axios
